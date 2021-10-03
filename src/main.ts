@@ -8,7 +8,6 @@ import VueLazyLoad from 'vue-lazyload'
 import axios from 'axios'
 import mainMixin from './renderer/utils/mainMixin'
 import bus from '@/utils/bus'
-import { initTalkingData } from './renderer/utils/analytics'
 import db from './renderer/utils/db'
 
 webFrame.setVisualZoomLevelLimits(1, 1)
@@ -36,5 +35,3 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
-
-initTalkingData()

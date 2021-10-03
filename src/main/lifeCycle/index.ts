@@ -78,10 +78,11 @@ class LifeCycle {
           console.error('Vue Devtools failed to install:', e.toString())
         }
       }
-      const res = await privacyManager.init()
-      if (!res) {
-        return app.quit()
-      }
+      // 去掉隐私协议
+      // const res = await privacyManager.init()
+      // if (!res) {
+      //   return app.quit()
+      // }
       windowManager.create(IWindowList.TRAY_WINDOW)
       windowManager.create(IWindowList.SETTING_WINDOW)
       createTray()

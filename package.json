@@ -1,7 +1,8 @@
 {
   "name": "picgo",
-  "version": "2.3.2-xcr",
+  "version": "2.3.2xcr",
   "private": true,
+  "author": "xcr",
   "scripts": {
     "dev": "vue-cli-service electron:serve",
     "build": "vue-cli-service electron:build",
