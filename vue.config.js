@@ -81,8 +81,8 @@ const config = {
           target: [{
             target: 'nsis',
             arch: [
-              'x64',
-              'ia32'
+              'x64'
+              // 'ia32'
             ]
           }]
         },

@@ -11,7 +11,7 @@ const getPicBeds = () => {
       visible: visible ? visible.visible : true
     }
   }) as IPicBedType[]
-  return picBeds
+  return picBeds.filter(v => (v.type === 'github' || v.type === 'gitlab'))
 }
 
 export default getPicBeds

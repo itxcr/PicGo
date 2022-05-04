@@ -13,12 +13,12 @@
     <el-row style="padding-top: 22px;" class="main-content">
       <el-col :span="5" class="side-bar-menu">
         <el-menu
-          class="picgo-sidebar"
-          :default-active="defaultActive"
-          @select="handleSelect"
-          :unique-opened="true"
-          @open="handleGetPicPeds"
-          >
+            class="picgo-sidebar"
+            :default-active="defaultActive"
+            @select="handleSelect"
+            :unique-opened="true"
+            @open="handleGetPicPeds"
+        >
           <el-menu-item index="upload">
             <i class="el-icon-upload"></i>
             <span slot="title">{{ $T('UPLOAD_AREA') }}</span>
@@ -28,19 +28,19 @@
             <span slot="title">{{ $T('GALLERY') }}</span>
           </el-menu-item>
           <el-submenu
-            index="sub-menu"
+              index="sub-menu"
           >
             <template slot="title">
               <i class="el-icon-menu"></i>
               <span>{{ $T('PICBEDS_SETTINGS') }}</span>
             </template>
             <template
-              v-for="item in picBed"
+                v-for="item in picBed"
             >
               <el-menu-item
-                v-if="item.visible"
-                :index="`picbeds-${item.type}`"
-                :key="item.type"
+                  v-if="item.visible"
+                  :index="`picbeds-${item.type}`"
+                  :key="item.type"
               >
                 <!-- <i :class="`el-icon-ui-${item.type}`"></i> -->
                 <span slot="title">{{ item.name }}</span>
@@ -51,19 +51,21 @@
             <i class="el-icon-setting"></i>
             <span slot="title">{{ $T('PICGO_SETTINGS') }}</span>
           </el-menu-item>
-          <el-menu-item index="plugin">
-            <i class="el-icon-share"></i>
-            <span slot="title">{{ $T('PLUGIN_SETTINGS') }}</span>
-          </el-menu-item>
+          <!--          注释掉插件-->
+          <!--          <el-menu-item index="plugin">-->
+          <!--            <i class="el-icon-share"></i>-->
+          <!--            <span slot="title">{{ $T('PLUGIN_SETTINGS') }}</span>-->
+          <!--          </el-menu-item>-->
         </el-menu>
-        <i class="el-icon-info setting-window" @click="openDialog"></i>
+        <!--        关掉提示-->
+        <!--        <i class="el-icon-info setting-window" @click="openDialog"></i>-->
       </el-col>
       <el-col
-        :span="19"
-        :offset="5"
-        style="height: 428px"
-        class="main-wrapper"
-        :class="{ 'darwin': os === 'darwin' }">
+          :span="19"
+          :offset="5"
+          style="height: 428px"
+          class="main-wrapper"
+          :class="{ 'darwin': os === 'darwin' }">
         <transition name="picgo-fade" mode="out-in">
           <keep-alive>
             <router-view v-if="$route && $route.meta && $route.meta.keepAlive"></router-view>
@@ -75,58 +77,62 @@
       </el-col>
     </el-row>
     <el-dialog
-      :title="$T('SPONSOR_PICGO')"
-      :visible.sync="visible"
-      width="70%"
-      top="10vh"
+        :title="$T('SPONSOR_PICGO')"
+        :visible.sync="visible"
+        width="70%"
+        top="10vh"
     >
       {{ $T('PICGO_SPONSOR_TEXT') }}
       <el-row class="support">
         <el-col :span="12">
-          <img src="https://user-images.githubusercontent.com/12621342/34188165-e7cdf372-e56f-11e7-8732-1338c88b9bb7.jpg" :alt="$T('ALIPAY')">
+          <img
+              src="https://user-images.githubusercontent.com/12621342/34188165-e7cdf372-e56f-11e7-8732-1338c88b9bb7.jpg"
+              :alt="$T('ALIPAY')">
           <div class="support-title">{{ $T('ALIPAY') }}</div>
         </el-col>
         <el-col :span="12">
-          <img src="https://user-images.githubusercontent.com/12621342/34188201-212cda84-e570-11e7-9b7a-abb298699d85.jpg" :alt="$T('WECHATPAY')">
+          <img
+              src="https://user-images.githubusercontent.com/12621342/34188201-212cda84-e570-11e7-9b7a-abb298699d85.jpg"
+              :alt="$T('WECHATPAY')">
           <div class="support-title">{{ $T('WECHATPAY') }}</div>
         </el-col>
       </el-row>
     </el-dialog>
     <el-dialog
-      class="qrcode-dialog"
-      top="3vh"
-      width="60%"
-      :title="$T('PICBED_QRCODE')"
-      :visible.sync="qrcodeVisible"
-      :modal-append-to-body="false"
-      lock-scroll
+        class="qrcode-dialog"
+        top="3vh"
+        width="60%"
+        :title="$T('PICBED_QRCODE')"
+        :visible.sync="qrcodeVisible"
+        :modal-append-to-body="false"
+        lock-scroll
     >
       <el-form
-        label-position="left"
-        label-width="70px"
-        size="mini"
+          label-position="left"
+          label-width="70px"
+          size="mini"
       >
         <el-form-item
-          :label="$T('CHOOSE_PICBED')"
+            :label="$T('CHOOSE_PICBED')"
         >
           <el-select
-            v-model="choosedPicBedForQRCode"
-            multiple
-            collapse-tags
+              v-model="choosedPicBedForQRCode"
+              multiple
+              collapse-tags
           >
             <el-option
-              v-for="item in picBed"
-              :key="item.type"
-              :label="item.name"
-              :value="item.type"
+                v-for="item in picBed"
+                :key="item.type"
+                :label="item.name"
+                :value="item.type"
             ></el-option>
           </el-select>
           <el-button
-            v-show="choosedPicBedForQRCode.length > 0"
-            type="primary"
-            round
-            class="copy-picbed-config"
-            @click="handleCopyPicBedConfig"
+              v-show="choosedPicBedForQRCode.length > 0"
+              type="primary"
+              round
+              class="copy-picbed-config"
+              @click="handleCopyPicBedConfig"
           >
             {{ $T('COPY_PICBED_CONFIG') }}
           </el-button>
@@ -134,13 +140,13 @@
       </el-form>
       <div class="qrcode-container">
         <qrcode-vue
-          v-show="choosedPicBedForQRCode.length > 0"
-          :size="280"
-          :value="picBedConfigString"
+            v-show="choosedPicBedForQRCode.length > 0"
+            :size="280"
+            :value="picBedConfigString"
         />
       </div>
     </el-dialog>
-    <input-box-dialog />
+    <input-box-dialog/>
   </div>
 </template>
 <script lang="ts">
@@ -162,6 +168,7 @@ import {
   SHOW_MAIN_PAGE_QRCODE,
   SHOW_MAIN_PAGE_DONATION
 } from '~/universal/events/constants'
+
 @Component({
   name: 'main-page',
   mixins: [mixin],
@@ -181,6 +188,7 @@ export default class extends Vue {
   qrcodeVisible = false
   picBedConfigString = ''
   choosedPicBedForQRCode: string[] = []
+
   created () {
     this.os = process.platform
     ipcRenderer.send('getPicBeds')
@@ -254,6 +262,10 @@ export default class extends Vue {
   }
 
   getPicBeds (event: IpcRendererEvent, picBeds: IPicBedType[]) {
+    picBeds.map(v => {
+      v.visible = v.type === 'github'
+      return v
+    })
     this.picBed = picBeds
   }
 
@@ -274,31 +286,39 @@ $darwinBg = transparentify(#172426, #000, 0.7)
   height 425px
   overflow-y auto
   overflow-x hidden
-  margin-right 0!important
+  margin-right 0 !important
+
 .picgo-fade
   &-enter,
   &-leave,
   &-leave-active
     opacity 0
+
   &-enter-active,
   &-leave-active
     transition all 100ms linear
+
 .view-title
   color #eee
   font-size 20px
   text-align center
   margin 10px auto
+
 #main-page
   .qrcode-dialog
     .qrcode-container
       display flex
       justify-content center
+
     .el-dialog__body
       padding-top 10px
+
     .copy-picbed-config
       margin-left 10px
+
     .el-input__inner
       border-radius 14px
+
   .fake-title-bar
     -webkit-app-region drag
     height h = 22px
@@ -309,45 +329,55 @@ $darwinBg = transparentify(#172426, #000, 0.7)
     line-height h
     position fixed
     z-index 100
+
     &.darwin
       background transparent
       background-image linear-gradient(
-        to right,
-        transparent 0%,
-        transparent 167px,
-        $darwinBg 167px,
-        $darwinBg 100%
+          to right,
+          transparent 0%,
+          transparent 167px,
+          $darwinBg 167px,
+          $darwinBg 100%
       )
+
       .fake-title-bar__title
         padding-left 167px
+
     .handle-bar
       position absolute
       top 2px
       right 4px
       z-index 10000
       -webkit-app-region no-drag
+
       i
         cursor pointer
         font-size 16px
         margin-left 5px
+
       .el-icon-minus
         &:hover
           color #409EFF
+
       .el-icon-close
         &:hover
           color #F15140
+
       .el-icon-circle-plus-outline
         &:hover
           color #69C282
+
   .main-wrapper
     &.darwin
       background $darwinBg
+
   .side-bar-menu
     position fixed
     height calc(100vh - 22px)
     overflow-x hidden
     overflow-y auto
     width 170px
+
     .el-icon-info.setting-window
       position fixed
       bottom 4px
@@ -355,21 +385,27 @@ $darwinBg = transparentify(#172426, #000, 0.7)
       cursor poiter
       color #878d99
       transition .2s all ease-in-out
+
       &:hover
         color #409EFF
+
   .el-menu
     border-right none
     background transparent
     width 170px
+
     &-item
       color #eee
       position relative
+
       &:focus,
       &:hover
         color #fff
         background transparent
+
       &.is-active
         color active-color = #409EFF
+
         &:before
           content ''
           position absolute
@@ -378,39 +414,52 @@ $darwinBg = transparentify(#172426, #000, 0.7)
           right 0
           top 18px
           background active-color
+
   .el-submenu__title
     span
       color #eee
+
     &:hover
       background transparent
+
       span
         color #fff
+
   .el-submenu
     .el-menu-item
       min-width 166px
+
       &.is-active
         &:before
           top 16px
+
   .main-content
     padding-top 22px
     position relative
     z-index 10
+
   .el-dialog__body
     padding 20px
+
   .support
     text-align center
+
     &-title
       text-align center
       color #878d99
+
   .align-center
     input
       text-align center
+
   *::-webkit-scrollbar
     width 8px
     height 8px
+
   *::-webkit-scrollbar-thumb
     border-radius 4px
     background #6f6f6f
+
   *::-webkit-scrollbar-track
     background-color transparent
 </style>

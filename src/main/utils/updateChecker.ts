@@ -20,6 +20,7 @@ const checkVersion = async () => {
     try {
       res = await axios.get(releaseUrl).catch(async () => {
         const result = await axios.get(releaseUrlBackup)
+        console.log(result, '12312321321')
         return result
       })
     } catch (err) {
